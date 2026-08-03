@@ -1,0 +1,6 @@
+Fake.csv
+True.csv
+cleaned_news.csv
+__pycache__/
+.vscode/
+*.pyc
