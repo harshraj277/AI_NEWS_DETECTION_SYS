@@ -2,7 +2,7 @@ from flask import Flask, request, jsonify
 import pickle
 import re
 import os
-import numpy as np
+from pathlib import Path
 import requests
 from bs4 import BeautifulSoup
 from flask_cors import CORS
@@ -12,10 +12,13 @@ from langdetect import detect, LangDetectException
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}}, supports_credentials=False)
 
-# Remove the problematic preflight handler - Flask-CORS handles this automatically
+# Paths resolve relative to this file, so the app runs from any working directory
+BASE_DIR = Path(__file__).resolve().parent.parent
+MODEL_PATH = BASE_DIR / "models" / "model.pkl"
+VECTORIZER_PATH = BASE_DIR / "models" / "vectorizer.pkl"
 
-model = pickle.load(open("model.pkl", "rb"))
-vectorizer = pickle.load(open("vectorizer.pkl", "rb"))
+model = pickle.load(open(MODEL_PATH, "rb"))
+vectorizer = pickle.load(open(VECTORIZER_PATH, "rb"))
 
 stop_words = set(stopwords.words('english'))
 

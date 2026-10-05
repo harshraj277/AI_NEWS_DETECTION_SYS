@@ -1,6 +1,11 @@
-Fake.csv
-True.csv
-cleaned_news.csv
+# Datasets (too large for git)
+data/*.csv
+
+# Python
 __pycache__/
-.vscode/
 *.pyc
+.venv/
+venv/
+
+# Editors
+.vscode/
